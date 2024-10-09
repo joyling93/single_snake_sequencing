@@ -1,5 +1,7 @@
 name: doublets
 channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
   - pytorch
   - bioconda
   - conda-forge
