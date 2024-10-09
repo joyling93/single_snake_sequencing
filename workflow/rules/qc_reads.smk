@@ -16,7 +16,7 @@ rule fastqc:
 rule multiqc:
     input:
         **agg_fastqc(),
-        bcl2fastq=rules.unpack_bcl2fastq.output.bcl2fastq,
+#        bcl2fastq=rules.unpack_bcl2fastq.output.bcl2fastq,
     output:
         html=report(
             "results/multiqc/multiqc.html",
