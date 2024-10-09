@@ -27,4 +27,4 @@ rule multiqc:
     benchmark:
         "results/benchmarks/fastqc/multiqc.txt"
     wrapper:
-        "0.79.0/bio/multiqc"
+        "v3.5.3/bio/multiqc"
