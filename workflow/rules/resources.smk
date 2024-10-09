@@ -37,19 +37,19 @@ rule get_reference:
         """
 
 
-rule unpack_bcl2fastq:
-    input:
-        **get_bcl_results(),
-    output:
-        bcl2fastq="results/bcl2fastq/Stats/Stats.json",
-    log:
-        "results/logs/unpack_bcl2fastq/unpack_bcl2fastq.log",
-    benchmark:
-        "results/benchmarks/unpack_bcl2fastq/unpack_bcl2fastq.txt"
-    shell:
-        """
-        unzip {input.bcl_zip} -d results/bcl2fastq &> {log}
-        """
+#rule unpack_bcl2fastq:
+#    input:
+#        **get_bcl_results(),
+#    output:
+#        bcl2fastq="results/bcl2fastq/Stats/Stats.json",
+#    log:
+#        "results/logs/unpack_bcl2fastq/unpack_bcl2fastq.log",
+#    benchmark:
+#        "results/benchmarks/unpack_bcl2fastq/unpack_bcl2fastq.txt"
+#    shell:
+#        """
+#        unzip {input.bcl_zip} -d results/bcl2fastq &> {log}
+#        """
 
 
 # This currently expects names as I receive them from the core
