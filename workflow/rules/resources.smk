@@ -12,10 +12,7 @@ rule get_cellranger:
         "results/benchmarks/get_cellranger/get_cellranger.txt"
     shell:
         """
-            wget -O resources/cellranger.tar.gz "{params.url}" &> {log}
-        tar -xzf resources/cellranger.tar.gz -C resources &> {log} && \
-        rm -rf resources/cellranger.tar.gz
-        mv resources/cellranger-* resources/cellranger
+           ln -s "{params.url}"  resources/cellranger
         """
 
 
