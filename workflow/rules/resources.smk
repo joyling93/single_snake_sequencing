@@ -30,7 +30,7 @@ rule get_reference:
         "results/benchmarks/get_reference/get_reference.txt"
     shell:
         """
-            ln -s "{params.ref}" resources/genome
+            ln -s "{params.url}" resources/genome
         """
 
 
