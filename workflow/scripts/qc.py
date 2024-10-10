@@ -6,8 +6,8 @@ if __name__ == """__main__""":
     import matplotlib.pyplot as plt
     import pandas as pd
     import scanpy as sc
-    from helpers.logs.get_logger import get_logger
-    from helpers.logs.sc_logs import set_sc_log
+    #from helpers.logs.get_logger import get_logger
+    #from helpers.logs.sc_logs import set_sc_log
 
     LOG = snakemake.log[0]  # noqa: F821
     PARAMS = snakemake.params  # noqa: F821
@@ -15,18 +15,18 @@ if __name__ == """__main__""":
     OUTPUT = snakemake.output  # noqa: F821
     WILDS = snakemake.wildcards  # noqa: F821
 
-    logger = get_logger(__name__, LOG)
-    sc.settings = set_sc_log(sc.settings, logfile=LOG)
+    #logger = get_logger(__name__, LOG)
+    #sc.settings = set_sc_log(sc.settings, logfile=LOG)
 
     adata = sc.read_10x_mtx(INPUT["dir"], make_unique=True)
     adata.obs_names_make_unique()
-    logger.info(f"Adata read from {INPUT['dir']}")
-    logger.info(f"Input data: {adata}")
+    #logger.info(f"Adata read from {INPUT['dir']}")
+    #logger.info(f"Input data: {adata}")
 
     empty = pd.read_csv(INPUT["empty"], index_col=0)
     empty.index = adata.obs_names
     empty.FDR = empty.FDR.fillna(1)
-    logger.info(f"Empty read from {INPUT['empty']}")
+    #logger.info(f"Empty read from {INPUT['empty']}")
 
     # Transfer call
     adata.obs["is_cell"] = empty.FDR < 0.005
@@ -47,7 +47,7 @@ if __name__ == """__main__""":
     # Various plots
     # Specify various sc figure settings
     sc.set_figure_params(dpi_save=300, fontsize=12, figsize=(6, 6), format="png")
-    sc.settings.figdir = Path(".")
+    #sc.settings.figdir = Path(".")
 
     _ = sc.pl.violin(
         adata,
@@ -104,5 +104,5 @@ if __name__ == """__main__""":
     # Mark and save
     adata.obs["sample"] = WILDS["sample"]
     adata.write_h5ad(OUTPUT["data"])
-    logger.info(f"Filtered data: {adata}")
-    logger.info(f"Data saved to {OUTPUT['data']}")
+    #logger.info(f"Filtered data: {adata}")
+    #logger.info(f"Data saved to {OUTPUT['data']}")
