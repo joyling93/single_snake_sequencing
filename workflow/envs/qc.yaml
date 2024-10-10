@@ -1,5 +1,6 @@
 name: cluster
 channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
   - bioconda
   - conda-forge
   - defaults
