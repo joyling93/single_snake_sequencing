@@ -30,10 +30,7 @@ rule get_reference:
         "results/benchmarks/get_reference/get_reference.txt"
     shell:
         """
-            wget -O resources/genome.tar.gz "{params.url}" &> {log}
-        tar -xzf resources/genome.tar.gz -C resources &> {log} && \
-        rm -rf resources/genome.tar.gz
-        mv resources/refdata-* resources/genome
+            ln -s "{params.ref}" resources/genome
         """
 
 
