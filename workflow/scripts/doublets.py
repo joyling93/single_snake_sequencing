@@ -8,7 +8,7 @@ if __name__ == "__main__":
     import pandas as pd
     import scanpy as sc
     import scvi
-    from helpers.logs.get_logger import get_logger
+    #from helpers.logs.get_logger import get_logger
     from pandas.plotting import table
 
     LOG = snakemake.log[0]  # noqa: F821
@@ -17,7 +17,7 @@ if __name__ == "__main__":
     OUTPUT = snakemake.output  # noqa: F821
     WILDS = snakemake.wildcards  # noqa: F821
 
-    logger = get_logger(__name__, LOG)
+    #logger = get_logger(__name__, LOG)
     scvi.settings.seed = 42
 
     # Get data
@@ -29,8 +29,8 @@ if __name__ == "__main__":
     )
     adata.obs_names_make_unique()
     adata.obs["lane"] = str(WILDS["lane"])
-    logger.info(f"Adata read from {INPUT['data']}")
-    logger.info(f"Input data: {adata}")
+    #logger.info(f"Adata read from {INPUT['data']}")
+    #logger.info(f"Input data: {adata}")
 
     # SCVI doesn't seem to have a way to specify where the output logs to,
     # So we have to wrap and redirect
@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
     # Filter
     adata = adata[adata.obs.singlet_score > adata.obs.doublet_score, :]
-    logger.info(f"Data after doublet calls: {adata}")
+    #logger.info(f"Data after doublet calls: {adata}")
 
     # Clean up after scvi
     del adata.uns
@@ -88,4 +88,4 @@ if __name__ == "__main__":
     adata.obs["lane"] = adata.obs["lane"].astype("category")
 
     adata.write_h5ad(OUTPUT["data"])
-    logger.info(f"Data saved to {OUTPUT['data']}")
+    #logger.info(f"Data saved to {OUTPUT['data']}")
